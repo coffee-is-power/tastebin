@@ -12,6 +12,7 @@ export default async function create(req: NextApiRequest, res: NextApiResponse<s
         res.status(404).end()
         return
     }
+    res.setHeader("Content-Type", "text/plain");
     res.status(200).end(await client.get(id as string))
     client.disconnect()
 }

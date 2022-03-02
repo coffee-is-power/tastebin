@@ -3,6 +3,7 @@ import { useRouter } from "next/router";
 import useSWR from "swr";
 import styles from "@/styles/post.module.css";
 import ToolBox from "@/components/ToolBox";
+import React from "react";
 
 interface PostComponentProps {
   postId: string;
@@ -45,10 +46,10 @@ export default function Post(props: PostComponentProps) {
           }}
         >
           {content?.split("\n").map((_, i) => (
-            <>
+            <React.Fragment key={i}>
               {i}
               <br />
-            </>
+            </React.Fragment>
           ))}
         </code>
         <code className={styles.content} id="content">

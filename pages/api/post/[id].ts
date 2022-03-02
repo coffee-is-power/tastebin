@@ -16,5 +16,5 @@ export default async function create(
   }
   res.setHeader("Content-Type", "text/plain");
   res.status(200).end(await client.get(id as string));
-  client.disconnect();
+  await client.quit();
 }

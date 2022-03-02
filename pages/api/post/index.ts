@@ -28,6 +28,6 @@ export default async function create(
   await client.connect();
   const id = randomUUID();
   await client.set(id, req.body.content);
-  client.disconnect();
+  await client.quit();
   res.status(200).json({ id });
 }

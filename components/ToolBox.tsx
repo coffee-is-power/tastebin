@@ -60,7 +60,7 @@ export default function ToolBox({
           a:hover {
             color: white;
           }
-          button:disabled {
+          button:disabled, .disabled {
             color: #111111 !important;
             cursor: unset !important;
           }
@@ -73,7 +73,7 @@ export default function ToolBox({
       </style>
       <h1>TasteBin</h1>
       <div className="ToolBar">
-        <button onClick={onSubmit}>
+        <button onClick={onSubmit} id="upload">
           <FontAwesomeIcon icon={faFloppyDisk} />
         </button>
         <Link href="/">
@@ -84,6 +84,7 @@ export default function ToolBox({
                 (contentElement as HTMLPreElement).innerText = "";
               }
             }}
+            id="add-button"
           >
             <FontAwesomeIcon icon={faPlus} />
           </a>
@@ -95,18 +96,17 @@ export default function ToolBox({
               "/?text=" + urlSafe((contentElement as HTMLPreElement).innerText);
           }}
           disabled={!viewingPost}
+          id="copy"
         >
           <FontAwesomeIcon icon={faCopy} />
         </button>
-        <button
-          onClick={() => {
-            let contentElement = document.querySelector("#content");
-            window.location.href = "/api/post/" + postId;
-          }}
-          disabled={!viewingPost}
+        <a
+          href={viewingPost ? ("/api/post/" + urlSafe(postId as string)) : undefined}
+          className={viewingPost ? undefined : "disabled"}
+          id="raw-text"
         >
           <FontAwesomeIcon icon={faFileText} />
-        </button>
+        </a>
       </div>
     </div>
   );

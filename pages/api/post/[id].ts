@@ -14,7 +14,7 @@ export default async function create(
     res.status(404).end();
     return;
   }
-  res.setHeader("Content-Type", "text/plain");
+  res.setHeader("Content-Type", "text/plain; charset=UTF-8");
   res.status(200).end(await client.get(id as string));
   await client.quit();
 }
